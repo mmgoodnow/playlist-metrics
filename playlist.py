@@ -17,11 +17,12 @@ class Playlist:
 		total = json.get("total")
 		i = 0
 		self.tracks = []
+		print()
 		for off in range(0, total, limit):
 			json = sp.user_playlist_tracks(user, plid, fields, limit, off, mkt)
 			for i in range(len(json.get("items"))):
 				self.tracks.append(Track(json.get("items")[i]))
-			sys.stdout.write("\rRequesting data: %d%%" 
+			sys.stdout.write("\rFetching data: %d%%" 
 			% (100 * min(off + 100, total) / total))
 			sys.stdout.flush()
 		print()
@@ -58,4 +59,5 @@ class Playlist:
 		print("\nRankings: ")
 		for pair in ptl:
 			if pair[1] > 0:
-				print(pair[0] + ": " + str(pair[1]))
+				spacer = ":" + (" " * (15 - len(pair[0]) - len(str(pair[1]))))
+				print("    " + pair[0] + spacer + str(pair[1]))
