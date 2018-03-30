@@ -57,4 +57,5 @@ class Playlist:
 		
 		print("\nRankings: ")
 		for pair in ptl:
-			print(pair[0] + ": " + str(pair[1]))
+			if pair[1] > 0:
+				print(pair[0] + ": " + str(pair[1]))
