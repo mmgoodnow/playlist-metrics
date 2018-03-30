@@ -32,6 +32,7 @@ def main(user, uri):
 		try: 
 			line = input("Enter a command or type " + col.OKBLUE + "h" + col.ENDC +": ")
 		except:
+			print()
 			break
 		if line == "rankings":
 			pl.rankings()
@@ -46,6 +47,7 @@ def main(user, uri):
 		elif line == "help" or line == "h":
 			help()
 		elif line == "exit":
+			print()
 			break
 
 if __name__ == "__main__":
