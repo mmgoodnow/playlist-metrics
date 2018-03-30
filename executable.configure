@@ -1,0 +1,10 @@
+#!/bin/bash
+export SPOTIPY_CLIENT_ID='client-id'
+export SPOTIPY_CLIENT_SECRET='client-secret'
+export SPOTIPY_REDIRECT_URI='client-redirect-url'
+if [ $# -gt 1 ]
+then
+	./main.py $1 $2
+else
+	./main.py [user] [playlist-id]
+fi
