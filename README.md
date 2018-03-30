@@ -10,5 +10,6 @@ The first step is to set up a
 
 `playlist-metrics` also expects a file named usernames.txt alongside the python files 
 containing lines mapping spotify usernames to human-friendly names, for all collaborators 
-of the playlist. One entry per line of the form: `username:Real Name`.
+of the playlist. One entry per line of the form:  
+`username:Real Name`.
 
