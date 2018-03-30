@@ -61,3 +61,21 @@ class Playlist:
 			if pair[1] > 0:
 				spacer = ":" + (" " * (15 - len(pair[0]) - len(str(pair[1]))))
 				print("    " + pair[0] + spacer + str(pair[1]))
+	
+	# top 20 artists, users per artist, display {artist : number of users}
+	def popularArtists(self):
+		print("Not Implemented")
+		
+	# top 20 artists, number of songs, display {artist : number of songs}
+	def commonArtists(self):
+		print("Not Implemented")
+	
+	# most added artist per user
+	def favoriteArtists(self):
+		print("Not Implemented")
+	
+	# top 20 artists, users per artist, display {artist : most popular user}
+	def artistsFavoriteUsers(self):
+		print("Not Implemented")
+	
+

@@ -13,7 +13,15 @@ class col:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-	
+
+def help():
+	print()
+	print(col.OKGREEN + "Commands:" + col.ENDC)
+	print("    rankings - Show user rankings for this playlist")
+	print("    exit - exit the program")
+	print("    help - show this menu")
+	print()
+
 def main(user, uri):
 	scope = "playlist-read-collaborative"
 	token = util.prompt_for_user_token(user, scope)
@@ -23,18 +31,21 @@ def main(user, uri):
 	while (True):
 		try: 
 			line = input("Enter a command or type " + col.OKBLUE + "h" + col.ENDC +": ")
-			if line == "rankings":
-				pl.rankings()
-			elif line == "help" or line == "h":
-				print()
-				print(col.OKGREEN + "Commands:" + col.ENDC)
-				print("    rankings - Show user rankings for this playlist")
-				print("    exit - exit the program")
-				print("    help - show this menu")
-				print()
-			elif line == "exit":
-				break
 		except:
+			break
+		if line == "rankings":
+			pl.rankings()
+		elif line == "popular artists":
+			pl.popularArtists()
+		elif line == "common artists":
+			pl.commonArtists()
+		elif line == "favorite artists":
+			pl.usersFavoriteArtists()
+		elif line == "artists biggest adders":
+			pl.usersFavoriteArtists()
+		elif line == "help" or line == "h":
+			help()
+		elif line == "exit":
 			break
 
 if __name__ == "__main__":
