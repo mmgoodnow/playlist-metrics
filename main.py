@@ -28,7 +28,7 @@ def main(user, uri):
 	sp = spotipy.Spotify(auth=token, requests_session=True)
 	pl = Playlist(sp, uri)
 	
-	while (True):
+	while True:
 		try: 
 			line = input("Enter a command or type " + col.OKBLUE + "h" + col.ENDC +": ")
 		except:
