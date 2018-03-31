@@ -9,7 +9,7 @@ class Track:
 		self.user = json.get("added_by").get("id")
 		track = json.get("track")
 		self.name = track.get("name")
-		self.artists = list(artist.get("name") for artist in track.get("artists"))
+		self.artists = list(art.get("name") for art in track.get("artists"))
 		self.album = track.get("album").get("name")
 	
 	def print(self):
