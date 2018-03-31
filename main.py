@@ -17,6 +17,7 @@ class col:
 def help():
 	print()
 	print(col.OKGREEN + "Commands:" + col.ENDC)
+	print("    size - number of songs in the playlist")
 	print("    rankings - Show user rankings for this playlist")
 	print("    popular artists - show top 20 artists by number of users")
 	print("    common artists - show top 20 artists by number of songs")
@@ -25,7 +26,6 @@ def help():
 	print("    Reload - reload playlist data")
 	print("    exit - exit the program")
 	print("    help - show this menu")
-	print()
 
 def main(user, uri):
 	scope = "playlist-read-collaborative"
@@ -33,13 +33,17 @@ def main(user, uri):
 	sp = spotipy.Spotify(auth=token, requests_session=True)
 	pl = Playlist(sp, uri)
 	
+	
 	help()
 	while True:
 		try: 
-			line = input("Enter a command or type " + col.OKBLUE + "h" + col.ENDC +": ")
+			line = input("\nEnter a command or type " + \
+			col.OKBLUE + "h" + col.ENDC +": ")
 		except:
 			print()
 			break
+		if line == "size":
+			pl.size()
 		if line == "rankings":
 			pl.rankings()
 		elif line == "popular artists":

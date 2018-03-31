@@ -31,6 +31,12 @@ class Playlist:
 		for track in tracks:
 			track.print()
 			print()
+		
+	def size(self):
+		c = 0
+		for track in self.tracks:
+			c += 1
+		print("Size: " + str(c))
 	
 	def rankings(self):
 		rankings = {}
