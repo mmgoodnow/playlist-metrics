@@ -68,10 +68,20 @@ class Playlist:
 		
 	# top 20 artists, number of songs, display {artist : number of songs}
 	def commonArtists(self):
-		print("Not Implemented")
+		art_dic = {}
+		for song in self.tracks:
+			for artist in song.artists:
+				try: art_dic[artist] += 1
+				except: art_dic[artist] = 1
+		art_ranks = \
+		sorted(art_dic.items(), reverse=True, key=lambda tup: tup[1])[0:19]
+		for pair in art_ranks:
+			spacer = ":" + (" " * (25 - len(pair[0]) - len(str(pair[1]))))
+			print("    " + pair[0] + spacer + str(pair[1]))
+		
 	
 	# most added artist per user
-	def favoriteArtists(self):
+	def favorites(self):
 		print("Not Implemented")
 	
 	# top 20 artists, users per artist, display {artist : most popular user}

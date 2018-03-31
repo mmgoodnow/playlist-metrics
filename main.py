@@ -18,6 +18,11 @@ def help():
 	print()
 	print(col.OKGREEN + "Commands:" + col.ENDC)
 	print("    rankings - Show user rankings for this playlist")
+	print("    popular artists - show top 20 artists by number of users")
+	print("    common artists - show top 20 artists by number of songs")
+	print("    favorite artists - show favorite artist for each user")
+	print("    biggest adders - show top 20 artists and their biggest adder")
+	print("    Reload - reload playlist data")
 	print("    exit - exit the program")
 	print("    help - show this menu")
 	print()
@@ -28,6 +33,7 @@ def main(user, uri):
 	sp = spotipy.Spotify(auth=token, requests_session=True)
 	pl = Playlist(sp, uri)
 	
+	help()
 	while True:
 		try: 
 			line = input("Enter a command or type " + col.OKBLUE + "h" + col.ENDC +": ")
@@ -41,9 +47,12 @@ def main(user, uri):
 		elif line == "common artists":
 			pl.commonArtists()
 		elif line == "favorite artists":
-			pl.usersFavoriteArtists()
+			pl.favorites()
 		elif line == "artists biggest adders":
-			pl.usersFavoriteArtists()
+			pl.artistsFavoriteUsers()
+		elif line == "reload":
+			main(user, uri)
+			break
 		elif line == "help" or line == "h":
 			help()
 		elif line == "exit":
