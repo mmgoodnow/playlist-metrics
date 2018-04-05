@@ -25,6 +25,7 @@ class Playlist:
 			sys.stdout.write("\rFetching data: %d%%" 
 			% (100 * min(off + 100, total) / total))
 			sys.stdout.flush()
+		self.tracks[:] = filter(lambda t: t.name != "James the Cat", self.tracks)
 		print()
 	
 	def printAll(tracks):
