@@ -11,7 +11,7 @@ class Playlist:
 		user = match.group(1)
 		plid = match.group(2)
 		mkt = "US"
-		fields = "items(added_by.id,track(name,album.name,artists.name))"
+		fields = "items(added_by.id,track(uri,name,album.name,artists.name))"
 		limit = 100
 		json = sp.user_playlist_tracks(user, plid, "total", limit, 0, mkt)
 		total = json.get("total")
@@ -25,7 +25,6 @@ class Playlist:
 			sys.stdout.write("\rFetching data: %d%%" 
 			% (100 * min(off + 100, total) / total))
 			sys.stdout.flush()
-		self.tracks[:] = filter(lambda t: t.name != "James the Cat", self.tracks)
 		print()
 	
 	def printAll(tracks):
