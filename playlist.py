@@ -2,8 +2,9 @@ import sys
 import spotipy
 import re
 import track
-from track import users
+import users
 from track import Track
+from users import User
 
 class Playlist:
 	def __init__(self, sp, uri):

@@ -1,9 +1,3 @@
-users = {}
-with open("usernames.txt", "r") as usernames:
-	for line in usernames:
-		key,value = line.split(":")
-		users[key] = value.rstrip()
-
 class Track:
 	def __init__(self, json):
 		self.user = json.get("added_by").get("id")
