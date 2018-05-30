@@ -34,10 +34,7 @@ class Playlist:
 			print()
 		
 	def size(self):
-		c = 0
-		for track in self.tracks:
-			c += 1
-		print("Size: " + str(c))
+		print("Size: " + str(len(self.tracks)))
 	
 	def rankings(self):
 		rankings = {}
@@ -59,15 +56,31 @@ class Playlist:
 			rankings[user] = c
 		ptl = []
 		for key,value in rankings.items():
-			ptl.append([users[key],value])
+			ptl.append([users[key],value, 0, 0, (10000 * value) // len(self.tracks)])
 		
 		ptl.sort(key = lambda r: r[1], reverse = True)
 		
-		print("\nRankings: ")
+		for i in range(1, len(ptl)):
+			entry = ptl[i]
+			# songs behind frontrunner
+			entry[2] = ptl[0][1] - entry[1]
+			# songs behind next 
+			entry[3] = ptl[i - 1][1] - entry[1]
+		print()
+		print("                       Behind   Behind     % of")
+		print("Rankings:      Songs   Leader     Next    Total")
+		print()
 		for pair in ptl:
 			if pair[1] > 0:
 				spacer = ":" + (" " * (15 - len(pair[0]) - len(str(pair[1]))))
-				print("    " + pair[0] + spacer + str(pair[1]))
+				spacer2 = (" " * (9 - len(str(pair[2]))))
+				spacer3 = (" " * (9 - len(str(pair[3]))))
+				spacer4 = (" " * (9 - len(str(pair[4] / 100) + "%")))
+				print("    " + pair[0] 
+				+ spacer + str(pair[1]) 
+				+ spacer2 + str(pair[2]) 
+				+ spacer3 + str(pair[3])
+				+ spacer4 + str(pair[4] / 100) + "%")
 	
 	# top 20 artists, users per artist, display {artist : number of users}
 	def popularArtists(self):
