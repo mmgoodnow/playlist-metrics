@@ -66,17 +66,21 @@ class Playlist:
 			# songs behind next 
 			entry[3] = ptl[i - 1][1] - entry[1]
 		print()
-		print("                       Behind   Behind     % of")
-		print("Rankings:      Songs   Leader     Next    Total")
+		print("                              Behind   Behind     % of")
+		print("Rankings:     Rank    Songs   Leader     Next    Total")
 		print()
+		rank = 0
 		for pair in ptl:
 			if pair[1] > 0:
-				spacer = ":" + (" " * (15 - len(pair[0]) - len(str(pair[1]))))
+				rank += 1
+				spacer0 = ":" + (" " * (13 - len(pair[0]) - len(str(rank))))
+				spacer1 = (" " * (9 - len(str(pair[1]))))
 				spacer2 = (" " * (9 - len(str(pair[2]))))
 				spacer3 = (" " * (9 - len(str(pair[3]))))
 				spacer4 = (" " * (9 - len(str(pair[4] / 100) + "%")))
 				print("    " + pair[0] 
-				+ spacer + str(pair[1]) 
+				+ spacer0 + str(rank)
+				+ spacer1 + str(pair[1]) 
 				+ spacer2 + str(pair[2]) 
 				+ spacer3 + str(pair[3])
 				+ spacer4 + str(pair[4] / 100) + "%")
