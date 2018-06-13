@@ -35,7 +35,7 @@ def main(user, uri):
 	
 	
 	help()
-	while True:
+	while False:
 		try: 
 			line = input("\nEnter a command or type " + \
 			col.OKBLUE + "h" + col.ENDC +": ")
