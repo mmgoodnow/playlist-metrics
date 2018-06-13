@@ -33,9 +33,8 @@ def main(user, uri):
 	sp = spotipy.Spotify(auth=token, requests_session=True)
 	pl = Playlist(sp, uri)
 	
-	
 	help()
-	while False:
+	while True:
 		try: 
 			line = input("\nEnter a command or type " + \
 			col.OKBLUE + "h" + col.ENDC +": ")
@@ -62,6 +61,7 @@ def main(user, uri):
 		elif line == "exit":
 			print()
 			break
+		break
 
 if __name__ == "__main__":
 	if len(sys.argv) != 3:

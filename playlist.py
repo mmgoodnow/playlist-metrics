@@ -25,7 +25,7 @@ class Playlist:
 			% (100 * min(off + 100, total) / total))
 			sys.stdout.flush()
 		print()
-			
+		
 	def printAll(tracks):
 		for track in tracks:
 			track.print()
@@ -58,21 +58,21 @@ class Playlist:
 		print("Rankings:     Rank    Songs   Leader     Next    Total")
 		print()
 		rank = 0
-		for pair in ptl:
-			if pair[1] <= 0: 
+		for row in ptl:
+			if row[1] <= 0: 
 				continue
 			rank += 1
-			spacer0 = ":" + (" " * (13 - len(pair[0]) - len(str(rank))))
-			spacer1 = (" " * (9 - len(str(pair[1]))))
-			spacer2 = (" " * (9 - len(str(pair[2]))))
-			spacer3 = (" " * (9 - len(str(pair[3]))))
-			spacer4 = (" " * (9 - len(str(pair[4] / 100) + "%")))
-			print("    " + pair[0] 
+			spacer0 = ":" + (" " * (13 - len(row[0]) - len(str(rank))))
+			spacer1 = (" " * (9 - len(str(row[1]))))
+			spacer2 = (" " * (9 - len(str(row[2]))))
+			spacer3 = (" " * (9 - len(str(row[3]))))
+			spacer4 = (" " * (9 - len(str(row[4] / 100) + "%")))
+			print("    " + row[0] 
 			+ spacer0 + str(rank)
-			+ spacer1 + str(pair[1]) 
-			+ spacer2 + str(pair[2]) 
-			+ spacer3 + str(pair[3])
-			+ spacer4 + str(pair[4] / 100) + "%")
+			+ spacer1 + str(row[1]) 
+			+ spacer2 + str(row[2]) 
+			+ spacer3 + str(row[3])
+			+ spacer4 + str(row[4] / 100) + "%")
 	
 	# top 20 artists, users per artist, display {artist : number of users}
 	def popularArtists(self):
@@ -94,8 +94,22 @@ class Playlist:
 	
 	# most added artist per user
 	def favorites(self):
-		for key,user in users.items():
-			print(str(user.favoriteArtist()))
+		ptl = []
+		for i, user in enumerate(users.values()):
+			if user.numTracks() <= 0: continue
+			row = ["", "", 0]
+			row[0] = user.realName()
+			row[1], row[2] = user.favoriteArtist()
+			ptl.append(row)
+		
+		for row in sorted(ptl, reverse=True, key=lambda r: r[2]):
+			print("    "
+			+ row[0]
+			+ ": " 
+			+ row[1]
+			+ ", with "
+			+ str(row[2])
+			+ " songs")
 	
 	# top 20 artists, users per artist, display {artist : most popular user}
 	def artistsFavoriteUsers(self):
